@@ -40,11 +40,13 @@ export default {
    ** See https://nuxtjs.org/api/configuration-components
    */
   components: true,
-
+  content: {
+    // Options
+  },
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa'],
+  modules: ['@nuxtjs/pwa', '@nuxt/content'],
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/

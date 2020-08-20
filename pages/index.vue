@@ -1,38 +1,36 @@
 <template>
-  <div class="container">
     <div>
-      <h1 class="title">
-        Ma page nuxt
-      </h1>
-      <h2>C'est la plus belle de toutes</h2>
+      <nuxt-content class="page" :document="page"></nuxt-content>
 
-      <nuxt-link to="/angele">C'est pas vrai!</nuxt-link>
+      <section class="experiences">
+          <Experience :experience="experience" v-for="experience in experiences" :key="experience.title"></Experience>
+      </section>
+      <nuxt-link to="/projets">Voir tous mes projets cools</nuxt-link>
     </div>
-  </div>
 </template>
 
 <script>
-export default {}
+export default {
+
+  async asyncData({$content}) {
+    const experiences = await $content('experiences').sortBy('start', 'desc').fetch()
+    const page = await $content('home').fetch()
+
+    return {
+      experiences, page
+    }
+  }
+}
 </script>
 
 <style lang="scss">
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 
+  .page{
+    text-align: center;
+    margin-bottom: 40px;
+    img{
+      width:30%;
+    }
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
 </style>

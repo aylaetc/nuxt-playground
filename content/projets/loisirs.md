@@ -1,0 +1,5 @@
+---
+title: Loisirs
+
+---
+# loisirs.ch
